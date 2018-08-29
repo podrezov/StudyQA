@@ -3,38 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateText;
-use App\Text;
+use App\Page;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
     public function index()
     {
+        $text = Page::where('page_title', 'main_page')->first();
         return view('welcome', [
-            'text' => Text::all()->first() ? Text::all()->first() : ''
+            'page' => $text
         ]);
     }
 
     public function create()
     {
-        Text::create([
-            'text' => 'text'
-        ]);
+        $text = new Page();
+        $text->mainTextCreate();
 
         return back();
     }
 
-    public function updateShow(Text $text)
+    public function edit(Page $page)
     {
-        return view('text.showUpdate', [
-            'text' => $text
+        return view('text.edit', [
+            'text' => $page
             ]);
     }
 
-    public function update(Text $text, UpdateText $request)
+    public function update(Page $page, UpdateText $request)
     {
-        $text->update([
-           'text' => $request->input('text')
+        $page->update([
+           'content' => $request->input('text')
         ]);
 
         return redirect()->route('welcome');

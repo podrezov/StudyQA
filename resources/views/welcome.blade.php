@@ -82,9 +82,9 @@
                     StudyQA
                 </div>
             <div class="text">
-                @if(!empty($text))
-                    {{ $text->text }}
-                    <a href="{{ route('text.update.show', $text) }}">Ред</a>
+                @if(!empty($page))
+                    {{ $page->content }}
+                    <a href="{{ route('text.update.show', $page) }}">Ред</a>
                 @else
                     <a href="{{ route('text.create') }}">Создать</a>
                 @endif

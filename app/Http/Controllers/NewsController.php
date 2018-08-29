@@ -12,7 +12,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('news.index', [
-           'news' => News::all(),
+            'news' => News::orderBy('id', 'desc')->paginate(3),
         ]);
     }
 
@@ -39,9 +39,9 @@ class NewsController extends Controller
         ]);
     }
 
-    public function showUpdate(News $news)
+    public function edit(News $news)
     {
-        return view('news.showUpdate', [
+        return view('news.edit', [
             'news' => $news,
         ]);
     }
@@ -49,9 +49,9 @@ class NewsController extends Controller
     public function update(StoreNews $request, News $news)
     {
         $news->update([
-           'title' => $request->input('title'),
-           'short_content' => $request->input('short_content'),
-           'content' => $request->input('content'),
+            'title' => $request->input('title'),
+            'short_content' => $request->input('short_content'),
+            'content' => $request->input('content'),
         ]);
 
         return redirect()->route('news.show', $news);

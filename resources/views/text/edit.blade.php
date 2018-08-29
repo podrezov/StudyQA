@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                         <label>Текст</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                  name="text">{{ $text->text }}</textarea><br>
+                                  name="text">{{ $text->content }}</textarea><br>
 
                         @if($errors->isNotEmpty('bags'))
                             <strong>{{ $errors->first() }}</strong>

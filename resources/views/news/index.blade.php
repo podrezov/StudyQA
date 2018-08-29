@@ -6,8 +6,10 @@
         <br><br>
 
         @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
+            <div class="col-md-4 m-auto text-center">
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
             </div>
         @endif
 
@@ -18,7 +20,8 @@
                         <span>{{ $entry->title }}</span>
 
                         <div class="dropdown float-right">
-                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                    id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Действие
                             </button>
@@ -42,5 +45,8 @@
         @empty
             <center><h1>Нет новостей</h1></center>
         @endforelse
+        <div class="col-md-1 m-auto">
+            {{ $news->links() }}
+        </div>
     </div>
 @endsection

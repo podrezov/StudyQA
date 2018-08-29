@@ -12,7 +12,7 @@ class GalleryController extends Controller
     public function index()
     {
         return view('gallery.index', [
-            'images' => Image::all()
+            'images' => Image::orderBy('id', 'desc')->paginate(12),
         ]);
     }
 
@@ -21,9 +21,6 @@ class GalleryController extends Controller
         $image = $request->file('img')->store(
             'images', 's3'
         );
-
-
-
         $path = Storage::disk('s3')->url($image);
         Image::create([
            'path' => $path

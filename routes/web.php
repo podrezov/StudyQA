@@ -15,8 +15,8 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Route::group(['prefix' => 'text'], function (){
     Route::get('/create', 'WelcomeController@create')->name('text.create');
-    Route::get('/{text}/update', 'WelcomeController@updateShow')->name('text.update.show');
-    Route::post('/{text}/update', 'WelcomeController@update')->name('text.update');
+    Route::get('/{page}/update', 'WelcomeController@edit')->name('text.update.show');
+    Route::post('/{page}/update', 'WelcomeController@update')->name('text.update');
 });
 
 Auth::routes();
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'news'], function (){
    Route::post('/create', 'NewsController@store')->name('news.store');
    Route::get('/{news}/show', 'NewsController@show')->name('news.show');
    Route::get('/{news}/delete', 'NewsController@delete')->name('news.delete');
-   Route::get('/{news}/update', 'NewsController@showUpdate')->name('news.update.show');
+   Route::get('/{news}/update', 'NewsController@edit')->name('news.update.show');
    Route::post('/{news}/update', 'NewsController@update')->name('news.update');
 });
 
