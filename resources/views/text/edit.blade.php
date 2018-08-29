@@ -3,7 +3,7 @@
 @section('content')
     <div class="m-auto col-6">
         <div class="card">
-            <form action="{{ route('text.update', $text) }}" method="post">
+            <form action="{{ route('text.update', $pageType) }}" method="post">
                 <div class="card-header">
                     Update text
                 </div>
@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                         <label>Текст</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                  name="text">{{ $text->content }}</textarea><br>
+                                  name="text">{{ $text->content ?? null }}</textarea><br>
 
                         @if($errors->isNotEmpty('bags'))
                             <strong>{{ $errors->first() }}</strong>

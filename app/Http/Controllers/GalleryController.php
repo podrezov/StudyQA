@@ -18,10 +18,8 @@ class GalleryController extends Controller
 
     public function upload(UploadImage $request)
     {
-        $image = $request->file('img')->store(
-            'images', 's3'
-        );
-        $path = Storage::disk('s3')->url($image);
+        $image = $request->file('img')->store('images', env('FILESYSTEM_CLOUD'));
+        $path = Storage::disk(env('FILESYSTEM_CLOUD'))->url($image);
         Image::create([
            'path' => $path
         ]);

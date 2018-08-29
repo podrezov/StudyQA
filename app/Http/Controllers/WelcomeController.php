@@ -10,32 +10,30 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $text = Page::where('page_title', 'main_page')->first();
+        $page = Page::where('page_title', 'main_page')->first();
+        
         return view('welcome', [
-            'page' => $text
+            'page' => $page,
         ]);
     }
 
-    public function create()
+    public function edit($pageType)
     {
-        $text = new Page();
-        $text->mainTextCreate();
+        $page = Page::where('page_title', $pageType)->first();
 
-        return back();
-    }
-
-    public function edit(Page $page)
-    {
         return view('text.edit', [
-            'text' => $page
-            ]);
+            'text' => $page,
+            'pageType' => $pageType
+        ]);
     }
 
-    public function update(Page $page, UpdateText $request)
+    public function store($pageType, UpdateText $request)
     {
-        $page->update([
-           'content' => $request->input('text')
-        ]);
+        $page = Page::where('page_title', $pageType)->first() ?? new Page();
+
+        $page->page_title = $pageType;
+        $page->content = $request->input('text');
+        $page->save();
 
         return redirect()->route('welcome');
     }

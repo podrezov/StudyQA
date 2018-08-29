@@ -15,8 +15,8 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Route::group(['prefix' => 'text'], function (){
     Route::get('/create', 'WelcomeController@create')->name('text.create');
-    Route::get('/{page}/update', 'WelcomeController@edit')->name('text.update.show');
-    Route::post('/{page}/update', 'WelcomeController@update')->name('text.update');
+    Route::get('/{page}/edit', 'WelcomeController@edit')->name('text.update.show');
+    Route::post('/{page}/update', 'WelcomeController@store')->name('text.update');
 });
 
 Auth::routes();

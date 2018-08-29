@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }} ">
         <!-- Styles -->
         <style>
             html, body {
@@ -48,6 +48,10 @@
             .title {
                 font-size: 84px;
             }
+            
+            .main-content {
+                font-family: sans-serif;
+            }
 
             .links > a {
                 color: #636b6f;
@@ -66,7 +70,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+           <!--  @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -75,19 +79,28 @@
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
-            @endif
+            @endif -->
 
             <div class="content">
                 <div class="title m-b-md">
                     StudyQA
                 </div>
-            <div class="text">
-                @if(!empty($page))
-                    {{ $page->content }}
-                    <a href="{{ route('text.update.show', $page) }}">Ред</a>
-                @else
-                    <a href="{{ route('text.create') }}">Создать</a>
+            <div class="text main-content">
+                @if($page)
+                    <div class="card">
+                        <div class="card-body" style="color: black;">
+                            {{ $page->content }}
+                        </div>
+                    </div>
                 @endif
+
+                <a class="btn btn-primary mt-2 mb-2" href="{{ route('text.update.show', \App\Page::MAIN_PAGE) }}">
+                @if($page)
+                    Редактировать
+                @else
+                    Создать        
+                @endif
+                </a>                
             </div>
                 <div class="links">
                     <a href="{{ route('news') }}">News</a>
